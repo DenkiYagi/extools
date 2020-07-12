@@ -1,0 +1,14 @@
+{
+    "name": "extools",
+    "url": "https://github.com/DenkiYagi/extools",
+    "license": "Apache",
+    "tags": ["haxe"],
+    "description": "Helper functions for the standard types",
+    "version": "0.0.1",
+    "classPath": "src/",
+    "releasenote": "0.0.1",
+    "contributors": ["denkiyagi"],
+    "dependencies": {
+        "extype": ""
+    }
+}
