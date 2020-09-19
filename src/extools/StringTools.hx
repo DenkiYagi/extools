@@ -9,20 +9,18 @@ class StringTools {
     #end
 
     @:extern public static inline function isBlank(x: Null<String>): Bool {
-        return NullTools.isNull(x) || BLANK.match(x);
+        return x == null || BLANK.match(x);
     }
 
     @:extern public static inline function nonBlank(x: Null<String>): Bool {
         return !isBlank(x);
     }
 
-
-	extern public static inline function isEmpty(x:Null<String>):Bool {
-		return NullTools.isNull(x) || NullTools.eq(x, "");
-	}
-
-	extern public static inline function nonEmpty(x:Null<String>):Bool {
-		return NullTools.nonNull(x) && NullTools.neq(x, "");
+    extern public static inline function isEmpty(x:Null<String>):Bool {
+        return x == null || EqualsTools.strictEqual(x, "");
     }
 
+    extern public static inline function nonEmpty(x:Null<String>):Bool {
+        return !isEmpty(x);
+    }
 }

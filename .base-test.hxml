@@ -1,0 +1,7 @@
+.base.hxml
+-p test
+-L buddy
+-main TestMain
+-dce full
+-D buddy-colors
+-D analyzer-optimize

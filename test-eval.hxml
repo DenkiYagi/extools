@@ -1,0 +1,4 @@
+-cmd echo Eval TEST -----------------------------
+--next
+.base-test.hxml
+--interp

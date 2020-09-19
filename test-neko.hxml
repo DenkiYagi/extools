@@ -1,0 +1,4 @@
+.base-test.hxml
+-neko .out/test.n
+-cmd echo Neko TEST -----------------------------
+-cmd neko .out/test.n

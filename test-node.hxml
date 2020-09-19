@@ -1,13 +1,5 @@
--cp src
--cp test
--lib extype
--lib buddy
--lib hxnodejs
--main TestMain
--js build/node.js
--D nodejs
--D buddy-colors
--D analyzer-optimize
--dce full
-#-debug
-#-cmd node build/node.js
+.base-test.hxml
+-L hxnodejs
+-js .out/test.js
+-cmd echo JS TEST -------------------------------
+-cmd node .out/test.js

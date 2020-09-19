@@ -3,8 +3,7 @@ package;
 import buddy.*;
 
 class TestMain implements Buddy<[
-    extools.LangToolsTest,
+    extools.EqualsToolsTest,
     extools.StringToolsTest,
-    extools.ArrayToolsTest,
     extools.OptionToolsTest,
 ]> {}

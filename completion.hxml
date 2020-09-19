@@ -1,0 +1,6 @@
+.base-test.hxml
+-L hxnodejs
+--macro include("extools", true)
+--no-output
+-D no-opt
+-js dummy.js
