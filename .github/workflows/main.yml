@@ -31,6 +31,7 @@ jobs:
     - name: Install Haxelib
       run: |
         mkdir $HOME/haxelib && haxelib setup $HOME/haxelib
+        haxelib install extype
         haxelib install buddy
         haxelib install hxnodejs
         haxelib install hxcpp
