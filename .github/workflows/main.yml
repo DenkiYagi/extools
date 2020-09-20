@@ -44,6 +44,6 @@ jobs:
     - name: Run test - C++
       run: haxe test-cpp.hxml
     - name: Run test - Java
-    run: haxe test-java.hxml
+      run: haxe test-java.hxml
     - name: Run test - JVM
-    run: haxe test-jvm.hxml
+      run: haxe test-jvm.hxml
