@@ -16,6 +16,8 @@ class EqualsToolsTest extends BuddySuite {
                 EqualsTools.strictEqual(1, 1).should.be(true);
                 EqualsTools.strictEqual(1, 2).should.be(false);
                 EqualsTools.strictEqual(null, null).should.be(true);
+                EqualsTools.strictEqual(1, cast true).should.be(false);
+                EqualsTools.strictEqual(0, cast false).should.be(false);
                 #if js
                 EqualsTools.strictEqual(null, js.Lib.undefined).should.be(false);
                 #end
@@ -27,6 +29,8 @@ class EqualsToolsTest extends BuddySuite {
                 EqualsTools.notStrictEqual(1, 1).should.be(false);
                 EqualsTools.notStrictEqual(1, 2).should.be(true);
                 EqualsTools.notStrictEqual(null, null).should.be(false);
+                EqualsTools.notStrictEqual(1, cast true).should.be(true);
+                EqualsTools.notStrictEqual(0, cast false).should.be(true);
                 #if js
                 EqualsTools.notStrictEqual(null, js.Lib.undefined).should.be(true);
                 #end
@@ -52,26 +56,16 @@ class EqualsToolsTest extends BuddySuite {
             #end
 
             it("can compare Bool", {
-                true
-                .deepEqual(true).should.be(true);
-                true
-                .deepEqual(false).should.be(false);
-                true
-                .deepEqual(null).should.be(false);
-                true
-                .deepEqual(1).should.be(false);
-                true
-                .deepEqual(0.1).should.be(false);
-                true
-                .deepEqual("hello").should.be(false);
-                true
-                .deepEqual([]).should.be(false);
-                true
-                .deepEqual({}).should.be(false);
-                true
-                .deepEqual(Some(1)).should.be(false);
-                true
-                .deepEqual(function() {}).should.be(false);
+                true.deepEqual(true).should.be(true);
+                true.deepEqual(false).should.be(false);
+                true.deepEqual(null).should.be(false);
+                true.deepEqual(1).should.be(false);
+                true.deepEqual(0.1).should.be(false);
+                true.deepEqual("hello").should.be(false);
+                true.deepEqual([]).should.be(false);
+                true.deepEqual({}).should.be(false);
+                true.deepEqual(Some(1)).should.be(false);
+                true.deepEqual(function() {}).should.be(false);
             });
 
             it("can compare Int", {
@@ -158,29 +152,6 @@ class EqualsToolsTest extends BuddySuite {
                 {id: 1, sub: {key1: "aaa", key2: "bbb"}}.deepEqual({id: 1, sub: {key1: "aaa", key2: "invalid"}}).should.be(false);
                 {id: 1, sub: {key1: "aaa", key2: "bbb"}}.deepEqual({id: 1, sub: {key1: "aaa", key2: "bbb", key3: "rest"}}).should.be(false);
             });
-            it("can compare Iterable Object", {
-                {id: 1, iterator: function() return 0...5}.deepEqual({id: 1, iterator: function() return 0...5}).should.be(true);
-                {id: 1, iterator: function() return 0...5}.deepEqual({id: 1, iterator: function() return 0...0}).should.be(false);
-                {id: 1, iterator: function() return 0...5}.deepEqual({id: 1, iterator: function() return null}).should.be(false);
-            });
-            it("can compare Iterator Object", {
-                {id: 2, hasNext: function() return false, next: function() {}}.deepEqual({id: 2, hasNext: function() return false, next: function() {}})
-                    .should.be(true);
-
-                var a = 0;
-                var b = 0;
-                {id: 2, hasNext: function() return a < 5, next: function() return a++}.deepEqual({id: 2, hasNext: function() return b < 5, next: function() return
-                    b++})
-                    .should.be(true);
-
-                var x = 0;
-                var y = 0;
-                {id: 2, hasNext: function() return x < 5, next: function() return x++}.deepEqual({id: 2, hasNext: function() return y < 1, next: function() return
-                    y++})
-                    .should.be(false);
-
-                {id: 2, hasNext: function() return false, next: function() {}}.deepEqual({id: 2}).should.be(false);
-            });
 
             it("can compare String", {
                 "".deepEqual("").should.be(true);
@@ -265,30 +236,6 @@ class EqualsToolsTest extends BuddySuite {
                 (0...5).deepEqual(0...5).should.be(true);
             });
 
-            it("can compare Valid IterableClass", {
-                new ValidIterable(0, "name", 0, 0).deepEqual(new ValidIterable(0, "name", 0, 0)).should.be(true);
-                new ValidIterable(0, "name", 0, 5).deepEqual(new ValidIterable(0, "name", 0, 5)).should.be(true);
-
-                new ValidIterable(0, "name", 0, 5).deepEqual(new ValidIterable(0, "name", 0, 0)).should.be(false);
-                new ValidIterable(0, "name", 0, 5).deepEqual(new ValidIterable(0, "name", 0, 4)).should.be(false);
-                new ValidIterable(1, "name", 0, 5).deepEqual(new ValidIterable(0, "name", 0, 5)).should.be(false);
-                new ValidIterable(0, "hello", 0, 5).deepEqual(new ValidIterable(0, "name", 0, 5)).should.be(false);
-            });
-            it("can compare Invalid IterableClass", {
-                new InvalidIterable(0, "name", 0, 0).deepEqual(new InvalidIterable(0, "name", 0, 0)).should.be(true);
-                new ValidIterable(0, "name", 0, 0).deepEqual(new InvalidIterable(0, "name", 0, 0)).should.be(false);
-            });
-
-            it("can compare Valid IteratorClass", {
-                new ValidIterator(0, "name", 0, 0).deepEqual(new ValidIterator(0, "name", 0, 0)).should.be(true);
-                new ValidIterator(0, "name", 0, 5).deepEqual(new ValidIterator(0, "name", 0, 5)).should.be(true);
-
-                new ValidIterator(0, "name", 0, 5).deepEqual(new ValidIterator(0, "name", 0, 0)).should.be(false);
-                new ValidIterator(0, "name", 0, 5).deepEqual(new ValidIterator(0, "name", 0, 4)).should.be(false);
-                new ValidIterator(1, "name", 0, 5).deepEqual(new ValidIterator(0, "name", 0, 5)).should.be(false);
-                new ValidIterator(0, "hello", 0, 5).deepEqual(new ValidIterator(0, "name", 0, 5)).should.be(false);
-            });
-
             it("can compare Empty Array", {
                 []
                 .deepEqual([]).should.be(true);
@@ -343,21 +290,19 @@ class EqualsToolsTest extends BuddySuite {
                     id: 1,
                     msg: "hello",
                     sub: {
-                        iters: [new ValidIterator(2, "iter", 0, 5)],
-                        enums: ([Some(1), None, Some(new ValidIterator(3, "enum", 2, 3))] : Array<Dynamic>),
+                        enums: ([Some(cast 1), None, Some(cast {name: "taro", age: 15, flags: [Boolean.True, Boolean.False]})]),
                         array: [1, 2, 3]
                     },
                     nullValue: null
                 }.deepEqual({
-                        id: 1,
-                        msg: "hello",
-                        sub: {
-                            iters: [new ValidIterator(2, "iter", 0, 5)],
-                            enums: ([Some(1), None, Some(new ValidIterator(3, "enum", 2, 3))] : Array<Dynamic>),
-                            array: [1, 2, 3]
-                        },
-                        nullValue: null
-                    }).should.be(true);
+                    id: 1,
+                    msg: "hello",
+                    sub: {
+                        enums: ([Some(cast 1), None, Some(cast {name: "taro", age: 15, flags: [Boolean.True, Boolean.False]})]),
+                        array: [1, 2, 3]
+                    },
+                    nullValue: null
+                }).should.be(true);
             });
         });
 
@@ -377,63 +322,3 @@ enum Boolean {
     False;
 }
 
-class ValidIterable {
-    public var id:Int;
-    public var name:String;
-
-    var start:Int;
-    var end:Int;
-
-    public function new(id:Int, name:String, start:Int, end:Int) {
-        this.id = id;
-        this.name = name;
-        this.start = start;
-        this.end = end;
-    }
-
-    public function iterator():Iterator<Int> {
-        return start...end;
-    }
-}
-
-class InvalidIterable {
-    public var id:Int;
-    public var name:String;
-
-    var start:Int;
-    var end:Int;
-
-    public function new(id:Int, name:String, start:Int, end:Int) {
-        this.id = id;
-        this.name = name;
-        this.start = start;
-        this.end = end;
-    }
-
-    public function iterator():Void {}
-}
-
-class ValidIterator {
-    public var id:Int;
-    public var name:String;
-
-    var start:Int;
-    var end:Int;
-    var offset:Int;
-
-    public function new(id:Int, name:String, start:Int, end:Int) {
-        this.id = id;
-        this.name = name;
-        this.start = start;
-        this.end = end;
-        this.offset = start;
-    }
-
-    public function hasNext():Bool {
-        return offset < end;
-    }
-
-    public function next():Int {
-        return if (hasNext()) offset++ else throw "no data";
-    }
-}
