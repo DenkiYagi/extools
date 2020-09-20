@@ -9,5 +9,6 @@
 * JavaScript
 * Eval
 * NekoVM
-* CPP (WIP)
-
+* CPP
+* Java
+* JVM
