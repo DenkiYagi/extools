@@ -1,4 +1,4 @@
 .base-test.hxml
 -L hxnodejs
--js .out/test.js
+--js .out/test.js
 -cmd node .out/test.js
