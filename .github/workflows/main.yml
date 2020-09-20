@@ -35,6 +35,7 @@ jobs:
         haxelib install buddy
         haxelib install hxnodejs
         haxelib install hxcpp
+        haxelib install hxjava
     - name: Run test - JS
       run: haxe test-js.hxml
     - name: Run test - eval
