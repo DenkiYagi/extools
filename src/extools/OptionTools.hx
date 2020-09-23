@@ -66,4 +66,11 @@ class OptionTools {
             case _: false;
         }
     }
+
+    public static inline function fold<A, B>(option:Option<A>, ifEmpty:()->B, fn:A->B):B {
+        return switch (option) {
+            case Some(v): fn(v);
+            case None: ifEmpty();
+        }
+    }
 }

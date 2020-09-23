@@ -123,5 +123,12 @@ class OptionToolsTest extends BuddySuite {
                 None.find(function(x) return true).should.be(false);
             });
         });
+
+        describe("OptionTools.fold()", {
+            it("should pass", {
+                Some(1).fold(() -> { fail(); -1; }, x -> x + 100).should.be(101);
+                None.fold(() -> 10, x -> { fail(); -1; }).should.be(10);
+            });
+        });
     }
 }
