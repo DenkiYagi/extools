@@ -19,8 +19,7 @@ class OptionTools {
 
     public static inline function iter<A>(option:Option<A>, fn:A->Void):Void {
         switch (option) {
-            case Some(x):
-                fn(x);
+            case Some(x): fn(x);
             case None:
         }
     }
@@ -64,6 +63,13 @@ class OptionTools {
         return switch (option) {
             case Some(a) if (fn(a)): true;
             case _: false;
+        }
+    }
+
+    public static inline function filter<A>(option:Option<A>, fn:A->Bool):Option<A> {
+        return switch (option) {
+            case Some(a) if (fn(a)): option;
+            case _: None;
         }
     }
 

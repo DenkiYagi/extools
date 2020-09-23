@@ -113,6 +113,19 @@ class OptionToolsSuite extends BuddySuite {
             it("should be false", {
                 Some(1).find(x -> false).should.be(false);
                 None.find(x -> true).should.be(false);
+                None.find(x -> false).should.be(false);
+            });
+        });
+
+        describe("OptionTools.filter()", {
+            it("should be Some", {
+                Some(1).filter(x -> true).should.equal(Some(1));
+            });
+
+            it("should be None", {
+                Some(1).filter(x -> false).should.equal(None);
+                None.filter(x -> true).should.equal(None);
+                None.filter(x -> false).should.equal(None);
             });
         });
 
