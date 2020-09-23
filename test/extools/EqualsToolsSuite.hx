@@ -1,13 +1,9 @@
 package extools;
 
-import buddy.BuddySuite;
 import haxe.ds.Option;
 import extype.Result;
 import haxe.io.Bytes;
 import haxe.ds.StringMap;
-
-using buddy.Should;
-using extools.EqualsTools;
 
 class EqualsToolsSuite extends BuddySuite {
     public function new() {

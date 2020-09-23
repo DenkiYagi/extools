@@ -1,8 +1,5 @@
 package extools;
 
-import buddy.BuddySuite;
-
-using buddy.Should;
 using extools.StringTools;
 
 class StringToolsSuite extends BuddySuite {

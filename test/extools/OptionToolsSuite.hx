@@ -1,9 +1,7 @@
 package extools;
 
-import buddy.BuddySuite;
 import haxe.ds.Option;
 
-using buddy.Should;
 using extools.OptionTools;
 
 class OptionToolsSuite extends BuddySuite {
