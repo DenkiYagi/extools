@@ -28,16 +28,16 @@ class OptionToolsSuite extends BuddySuite {
             });
         });
 
-        describe("OptionTools.forEach()", {
+        describe("OptionTools.iter()", {
             it("should call fn", function(done) {
-                Some(1).forEach(function(x) {
+                Some(1).iter(function(x) {
                     x.should.be(1);
                     done();
                 });
             });
 
             it("should not call fn", {
-                None.forEach(function(x) {
+                None.iter(function(x) {
                     fail();
                 });
             });

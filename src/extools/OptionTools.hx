@@ -17,7 +17,7 @@ class OptionTools {
         }
     }
 
-    public static inline function forEach<A>(option:Option<A>, fn:A->Void):Void {
+    public static inline function iter<A>(option:Option<A>, fn:A->Void):Void {
         switch (option) {
             case Some(x):
                 fn(x);
