@@ -6,11 +6,11 @@ class StringToolsSuite extends BuddySuite {
     public function new() {
         describe("StringTools.isEmpty()", {
             it("should be true", {
-                var x:String = null;
+                final x:String = null;
                 x.isEmpty().should.be(true);
                 "".isEmpty().should.be(true);
                 #if js
-                var y:String = js.Lib.undefined;
+                final y:String = js.Lib.undefined;
                 y.isBlank().should.be(true);
                 #end
             });
@@ -24,11 +24,11 @@ class StringToolsSuite extends BuddySuite {
 
         describe("StringTools.nonEmpty()", {
             it("should be false", {
-                var x:String = null;
+                final x:String = null;
                 x.nonEmpty().should.be(false);
                 "".nonEmpty().should.be(false);
                 #if js
-                var y:String = js.Lib.undefined;
+                final y:String = js.Lib.undefined;
                 y.nonEmpty().should.be(false);
                 #end
             });
@@ -41,7 +41,7 @@ class StringToolsSuite extends BuddySuite {
 
         describe("StringTools.isBlank()", {
             it("should be true", {
-                var x:String = null;
+                final x:String = null;
                 x.isBlank().should.be(true);
 
                 "".isBlank().should.be(true);
@@ -57,7 +57,7 @@ class StringToolsSuite extends BuddySuite {
                     .should.be(true);
                 #end
                 #if js
-                var y:String = js.Lib.undefined;
+                final y:String = js.Lib.undefined;
                 y.isBlank().should.be(true);
                 #end
             });
@@ -69,7 +69,7 @@ class StringToolsSuite extends BuddySuite {
 
         describe("StringTools.nonBlank()", {
             it("should be false", {
-                var x:String = null;
+                final x:String = null;
                 x.nonBlank().should.be(false);
 
                 "".nonBlank().should.be(false);
@@ -85,7 +85,7 @@ class StringToolsSuite extends BuddySuite {
                     .should.be(false);
                 #end
                 #if js
-                var y:String = js.Lib.undefined;
+                final y:String = js.Lib.undefined;
                 y.nonBlank().should.be(false);
                 #end
             });

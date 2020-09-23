@@ -29,15 +29,15 @@ class OptionToolsSuite extends BuddySuite {
         });
 
         describe("OptionTools.iter()", {
-            it("should call fn", function(done) {
-                Some(1).iter(function(x) {
+            it("should call fn", done -> {
+                Some(1).iter(x -> {
                     x.should.be(1);
                     done();
                 });
             });
 
             it("should not call fn", {
-                None.iter(function(x) {
+                None.iter(x -> {
                     fail();
                 });
             });
@@ -45,34 +45,28 @@ class OptionToolsSuite extends BuddySuite {
 
         describe("OptionTools.map()", {
             it("should call fn", {
-                Some(1).map(function(x) {
-                    return x * 2;
-                }).should.equal(Some(2));
+                Some(1).map(x -> x * 2).should.equal(Some(2));
             });
 
             it("should not call fn", {
-                None.map(function(x) {
+                None.map(x -> {
                     fail();
-                    return x * 2;
+                    x * 2;
                 }).should.equal(None);
             });
         });
 
         describe("OptionTools.flatMap()", {
             it("should call fn", {
-                Some(1).flatMap(function(x) {
-                    return Some(x * 2);
-                }).should.equal(Some(2));
+                Some(1).flatMap(x -> Some(x * 2)).should.equal(Some(2));
 
-                Some(1).flatMap(function(x) {
-                    return None;
-                }).should.equal(None);
+                Some(1).flatMap(x -> None).should.equal(None);
             });
 
             it("should not call fn", {
-                var ret = None.map(function(x) {
+                var ret = None.map(x -> {
                     fail();
-                    return x * 2;
+                    x * 2;
                 });
                 ret.should.equal(None);
             });
@@ -113,12 +107,12 @@ class OptionToolsSuite extends BuddySuite {
 
         describe("OptionTools.find()", {
             it("should be true", {
-                Some(1).find(function(x) return x == 1).should.be(true);
+                Some(1).find(x -> x == 1).should.be(true);
             });
 
             it("should be false", {
-                Some(1).find(function(x) return false).should.be(false);
-                None.find(function(x) return true).should.be(false);
+                Some(1).find(x -> false).should.be(false);
+                None.find(x -> true).should.be(false);
             });
         });
 
