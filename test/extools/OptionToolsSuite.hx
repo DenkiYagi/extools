@@ -6,7 +6,7 @@ import haxe.ds.Option;
 using buddy.Should;
 using extools.OptionTools;
 
-class OptionToolsTest extends BuddySuite {
+class OptionToolsSuite extends BuddySuite {
     public function new() {
         timeoutMs = 50;
 

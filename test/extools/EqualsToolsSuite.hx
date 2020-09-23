@@ -9,7 +9,7 @@ import haxe.ds.StringMap;
 using buddy.Should;
 using extools.EqualsTools;
 
-class EqualsToolsTest extends BuddySuite {
+class EqualsToolsSuite extends BuddySuite {
     public function new() {
         describe("EqualsTools.strictEqual()", {
             it("should pass", {

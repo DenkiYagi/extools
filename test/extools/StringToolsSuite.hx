@@ -5,7 +5,7 @@ import buddy.BuddySuite;
 using buddy.Should;
 using extools.StringTools;
 
-class StringToolsTest extends BuddySuite {
+class StringToolsSuite extends BuddySuite {
     public function new() {
         describe("StringTools.isEmpty()", {
             it("should be true", {
