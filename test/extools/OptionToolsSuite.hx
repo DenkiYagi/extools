@@ -8,6 +8,64 @@ class OptionToolsSuite extends BuddySuite {
     public function new() {
         timeoutMs = 50;
 
+        describe("OptionTools.get()", {
+            it("should return value", {
+                Some(1).get().should.be(1);
+            });
+            it("should return null", {
+                final x:Null<Any> = None.get();
+                x.should.be(null);
+            });
+        });
+
+        describe("OptionTools.getUnsafe()", {
+            it("should return value", {
+                Some(1).getUnsafe().should.be(1);
+            });
+            it("should return null", {
+                final x:Null<Any> = None.getUnsafe();
+                x.should.be(null);
+            });
+        });
+
+        describe("OptionTools.getOrThrow()", {
+            it("should be success", {
+                Some(1).getOrThrow().should.be(1);
+                Some(2).getOrThrow(() -> new MyError()).should.be(2);
+            });
+            it("should be failure", {
+                try {
+                    None.getOrThrow();
+                    fail();
+                } catch (e) {
+                }
+
+                try {
+                    None.getOrThrow(() -> new MyError());
+                    fail();
+                } catch (e) {
+                }
+            });
+        });
+
+        describe("OptionTools.getOrElse()", {
+            it("should return value", {
+                Some(1).getOrElse(-5).should.be(1);
+            });
+            it("should return alt value", {
+                None.getOrElse(-5).should.be(-5);
+            });
+        });
+
+        describe("OptionTools.orElse()", {
+            it("should return value", {
+                Some(1).orElse(Some(-5)).should.equal(Some(1));
+            });
+            it("should return alt value", {
+                None.orElse(Some(-5)).should.equal(Some(-5));
+            });
+        });
+
         describe("OptionTools.isEmpty()", {
             it("should be false", {
                 Some(1).isEmpty().should.be(false);
@@ -135,5 +193,11 @@ class OptionToolsSuite extends BuddySuite {
                 None.fold(() -> 10, x -> { fail(); -1; }).should.be(10);
             });
         });
+    }
+}
+
+private class MyError extends extype.Error {
+    public function new() {
+        super();
     }
 }
