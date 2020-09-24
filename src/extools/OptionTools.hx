@@ -12,12 +12,14 @@ class OptionTools {
         }
     }
 
+    #if !target.static
     public static inline function getUnsafe<T>(option:Option<T>):T {
         return switch (option) {
             case Some(v): v;
             case None: null;
         }
     }
+    #end
 
     public static inline function getOrThrow<T>(option:Option<T>, ?errorFn:() -> Error):T {
         switch (option) {

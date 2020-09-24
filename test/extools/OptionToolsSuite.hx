@@ -18,6 +18,7 @@ class OptionToolsSuite extends BuddySuite {
             });
         });
 
+        #if !target.static
         describe("OptionTools.getUnsafe()", {
             it("should return value", {
                 Some(1).getUnsafe().should.be(1);
@@ -27,6 +28,7 @@ class OptionToolsSuite extends BuddySuite {
                 x.should.be(null);
             });
         });
+        #end
 
         describe("OptionTools.getOrThrow()", {
             it("should be success", {
