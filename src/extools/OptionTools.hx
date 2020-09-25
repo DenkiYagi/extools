@@ -1,7 +1,7 @@
 package extools;
 
-import extype.NoDataError;
-import extype.Error;
+import extype.NoDataException;
+import extype.Exception;
 import haxe.ds.Option;
 
 class OptionTools {
@@ -21,10 +21,10 @@ class OptionTools {
     }
     #end
 
-    public static inline function getOrThrow<T>(option:Option<T>, ?errorFn:() -> Error):T {
+    public static inline function getOrThrow<T>(option:Option<T>, ?errorFn:() -> Dynamic):T {
         switch (option) {
             case Some(v): return v;
-            case None: throw (errorFn == null) ? new NoDataError() : errorFn();
+            case None: throw (errorFn == null) ? new NoDataException() : errorFn();
         }
     }
 

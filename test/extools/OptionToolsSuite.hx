@@ -1,5 +1,6 @@
 package extools;
 
+import haxe.Exception;
 import haxe.ds.Option;
 
 using extools.OptionTools;
@@ -198,8 +199,8 @@ class OptionToolsSuite extends BuddySuite {
     }
 }
 
-private class MyError extends extype.Error {
+private class MyError extends extype.Exception {
     public function new() {
-        super();
+        super("myerror");
     }
 }
