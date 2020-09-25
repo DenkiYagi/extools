@@ -9,6 +9,18 @@ class OptionToolsSuite extends BuddySuite {
     public function new() {
         timeoutMs = 50;
 
+        describe("OptionTools.toMaybe()", {
+            it("should return value", {
+                final x = Some(1).toMaybe();
+                x.nonEmpty().should.be(true);
+                x.getOrThrow().should.be(1);
+            });
+            it("should return empty", {
+                final x = None.toMaybe();
+                x.isEmpty().should.be(true);
+            });
+        });
+
         describe("OptionTools.get()", {
             it("should return value", {
                 Some(1).get().should.be(1);

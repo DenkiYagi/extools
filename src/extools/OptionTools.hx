@@ -1,10 +1,17 @@
 package extools;
 
+import extype.Maybe;
 import extype.NoDataException;
-import extype.Exception;
 import haxe.ds.Option;
 
 class OptionTools {
+    public static inline function toMaybe<T>(option:Option<T>):Maybe<T> {
+        return switch (option) {
+            case Some(v): Maybe.of(v);
+            case None: Maybe.empty();
+        }
+    }
+
     public static inline function get<T>(option:Option<T>):Null<T> {
         return switch (option) {
             case Some(v): v;
