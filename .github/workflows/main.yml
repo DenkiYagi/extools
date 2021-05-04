@@ -12,8 +12,7 @@ jobs:
       with:
         haxe-version: 4.2.1
     - run: |
-        haxelib install buddy
-        haxelib install utest
+        haxelib inxtall .base-test.hxml
         haxelib install hxnodejs
         haxelib install hxcpp
         haxelib install hxjava
@@ -39,8 +38,7 @@ jobs:
       with:
         haxe-version: 4.1.5
     - run: |
-        haxelib install buddy
-        haxelib install utest
+        haxelib inxtall .base-test.hxml
         haxelib install hxnodejs
         haxelib install hxcpp
         haxelib install hxjava
