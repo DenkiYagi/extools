@@ -47,7 +47,7 @@ class EqualsTools {
             if (nonJsObject(a) || nonJsObject(b)) return false;
             #else
             if (strictEqual(a, b)) continue;
-            if (Std.is(a, String) || Std.is(b, String)) return false;
+            if (Std.isOfType(a, String) || Std.isOfType(b, String)) return false;
             #end
 
             switch (Type.typeof(a)) {
@@ -87,7 +87,7 @@ class EqualsTools {
                 case TClass(aCls):
                     switch (Type.typeof(b)) {
                         case TClass(bCls) if (strictEqual(aCls, bCls)):
-                            if (Std.is(a, Array)) {
+                            if (Std.isOfType(a, Array)) {
                                 final aArray:Array<Dynamic> = cast a;
                                 final bArray:Array<Dynamic> = cast b;
                                 final len = aArray.length;
@@ -96,12 +96,12 @@ class EqualsTools {
                                     stack.push(new Tuple2(aArray[i], bArray[i]));
                                 }
                                 continue;
-                            } else if (Std.is(a, Date)) {
+                            } else if (Std.isOfType(a, Date)) {
                                 final aDate:Date = cast a;
                                 final bDate:Date = cast b;
                                 if (notStrictEqual(aDate.getTime(), bDate.getTime())) return false;
                                 continue;
-                            } else if (Std.is(a, Bytes)) {
+                            } else if (Std.isOfType(a, Bytes)) {
                                 final aBytes:Bytes = cast a;
                                 final bBytes:Bytes = cast b;
                                 if (notStrictEqual(aBytes.length, bBytes.length)) return false;
@@ -109,7 +109,7 @@ class EqualsTools {
                                     if (notStrictEqual(aBytes.get(i), bBytes.get(i))) return false;
                                 }
                                 continue;
-                            } else if (Std.is(a, IMap)) {
+                            } else if (Std.isOfType(a, IMap)) {
                                 final aMap:IMap<Dynamic, Dynamic> = cast a;
                                 final bMap:IMap<Dynamic, Dynamic> = cast b;
                                 final keys = [for (k in aMap.keys()) k];
@@ -118,7 +118,7 @@ class EqualsTools {
                                     stack.push(new Tuple2(aMap.get(key), bMap.get(key)));
                                 }
                                 continue;
-                            } else if (Std.is(a, IntIterator)) {
+                            } else if (Std.isOfType(a, IntIterator)) {
                                 if (Reflect.field(a, "min") != Reflect.field(b, "min") || Reflect.field(a, "max") != Reflect.field(b, "max")) return false;
                                 continue;
                             }
