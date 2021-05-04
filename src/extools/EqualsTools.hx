@@ -12,7 +12,7 @@ class EqualsTools {
         #if js
         return Syntax.strictEq(a, b);
         #elseif cpp
-        return a == b && Type.typeof(a) == Type.typeof(b);
+        return a == b && Type.enumEq(Type.typeof(a), Type.typeof(b));
         #else
         return a == b;
         #end
