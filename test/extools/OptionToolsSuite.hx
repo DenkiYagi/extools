@@ -21,6 +21,18 @@ class OptionToolsSuite extends BuddySuite {
             });
         });
 
+        describe("OptionTools.toNullable()", {
+            it("should return value", {
+                final x = Some(1).toNullable();
+                x.nonEmpty().should.be(true);
+                x.getOrThrow().should.be(1);
+            });
+            it("should return empty", {
+                final x = None.toNullable();
+                x.isEmpty().should.be(true);
+            });
+        });
+
         describe("OptionTools.get()", {
             it("should return value", {
                 Some(1).get().should.be(1);

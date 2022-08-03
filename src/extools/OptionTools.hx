@@ -1,5 +1,6 @@
 package extools;
 
+import extype.Nullable;
 import extype.Maybe;
 import extype.NoDataException;
 import haxe.ds.Option;
@@ -7,8 +8,15 @@ import haxe.ds.Option;
 class OptionTools {
     public static inline function toMaybe<T>(option:Option<T>):Maybe<T> {
         return switch (option) {
-            case Some(v): Maybe.of(v);
-            case None: Maybe.empty();
+            case Some(v): Maybe.Some(v);
+            case None: Maybe.None;
+        }
+    }
+
+    public static inline function toNullable<T>(option:Option<T>):Nullable<T> {
+        return switch (option) {
+            case Some(v): Nullable.of(v);
+            case None: Nullable.empty();
         }
     }
 
