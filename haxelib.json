@@ -4,9 +4,9 @@
     "license": "Apache",
     "tags": ["haxe"],
     "description": "Haxe helper functions for the standard types",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "classPath": "src/",
-    "releasenote": "0.0.1",
+    "releasenote": "Fix for Haxe 4.4",
     "contributors": ["denkiyagi"],
     "dependencies": {
         "extype": ""
